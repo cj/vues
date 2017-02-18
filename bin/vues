@@ -1,0 +1,10 @@
+#!/usr/bin/env node
+
+const cli         = require('commander')
+const chalk       = require('chalk')
+const packageJson = require('../package.json')
+
+cli.version(packageJson.version)
+   .usage('<command> [options]')
+   .command('dev', `Run development server ${chalk.blue('(default)')}`, { isDefault: true })
+   .parse(process.argv)
