@@ -25,6 +25,8 @@
   },
   "devDependencies": {
     "babel-jest": "^18.0.0",
-    "jest": "^18.1.0"
+    "jest": "^18.1.0",
+    "request-promise": "^4.1.1",
+    "test-listen": "^1.0.1"
   }
 }
