@@ -2,7 +2,7 @@
 
 const cli   = require('commander')
 const chalk = require('chalk')
-const serve = require('micro')
+const micro = require('micro')
 
 const defaultHost = 'localhost'
 const defaultPort = 3000
@@ -12,7 +12,8 @@ cli.option('-h, --host [host]', `Server host ${chalk.blue(`(${defaultHost})`)}`,
    .parse(process.argv)
 
 require('babel-register')({
-  presets: ['es2015', 'es2016', 'es2017'],
+  presets: ['vue-app', 'es2015'],
+  plugins: ['transform-runtime'],
   only: /vues\/lib\/.*.js$/
 })
 
@@ -24,7 +25,7 @@ const config = {
 
 const { host, port } = config
 
-serve(server(config)).listen(port, host, err => {
+micro(server(config)).listen(port, host, err => {
   if (err) {
     console.error('micro:', err.stack) // eslint-disable-line no-console
     process.exit(1)
