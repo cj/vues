@@ -2,7 +2,7 @@
 
 const cli   = require('commander')
 const chalk = require('chalk')
-const micro = require('micro')
+const Vues  = require('../')
 
 const defaultHost = 'localhost'
 const defaultPort = 3000
@@ -11,23 +11,18 @@ cli.option('-h, --host [host]', `Server host ${chalk.blue(`(${defaultHost})`)}`,
    .option('-p, --port [port]', `Server port ${chalk.blue(`(${defaultPort})`)}`, defaultPort)
    .parse(process.argv)
 
-require('babel-register')({
-  presets: ['vue-app', 'es2015'],
-  plugins: ['transform-runtime'],
-  only: /vues\/lib\/.*.js$/
-})
-
-const server = require('../lib/server').default
-const config = {
+const config = Vues.config({
+  cli,
   host: cli.host,
   port: cli.port
-}
+})
 
 const { host, port } = config
+const server         = Vues.server(config)
 
-micro(server(config)).listen(port, host, err => {
+server.listen(port, host, err => {
   if (err) {
-    console.error('micro:', err.stack) // eslint-disable-line no-console
+    console.error('Vues:', err.stack) // eslint-disable-line no-console
     process.exit(1)
   }
   console.log(`> Ready! Listening on http://${host}:${port}`) // eslint-disable-line no-console

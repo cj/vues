@@ -2,15 +2,31 @@
   "name": "vues",
   "version": "0.5.0",
   "description": "The quickest way to run vuejs client side (inspired by next.js and nuxt.js).",
-  "main": "lib/index.js",
+  "main": "index.js",
+  "bin": {
+    "vues": "bin/vue",
+    "vues-dev": "bin/vues-dev"
+  },
   "repository": "https://github.com/cj/vues",
   "author": "cj <cjlazell@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "test": "jest"
+    "test": "jest --coverage --forceExit",
+    "test:watch": "jest --watchAll --coverage"
   },
   "jest": {
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "collectCoverageFrom": [
+      "lib/*.js"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 100,
+        "functions": 50,
+        "lines": 33,
+        "statements": 25
+      }
+    }
   },
   "dependencies": {
     "babel-preset-vue-app": "^0.4.0",
@@ -18,7 +34,6 @@
     "chalk": "^1.1.3",
     "commander": "^2.9.0",
     "micro": "^7.0.6",
-    "n-deep-merge": "^0.0.2",
     "webpack": "2.2.1",
     "webpack-dev-middleware": "1.10.1",
     "webpack-hot-middleware": "2.17.0"
