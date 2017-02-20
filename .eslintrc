@@ -1,0 +1,28 @@
+{
+  "root": true,
+  "extends": [ "standard" ],
+  "parser": "babel-eslint",
+  "plugins": [ "jest" ],
+  "env": {
+    "browser": true,
+    "es6": true,
+    "mocha": true,
+    "node": true,
+    "jest": true
+  },
+  "globals": {
+    "expect": true,
+    "sinon": true,
+    "StatusBar": true,
+    "device": true,
+    "componentHandler": true,
+    "jest": true,
+    "beforeAll": true
+  },
+  "rules": {
+    "no-multi-spaces": 0,
+    "key-spacing": 0,
+    "jest/no-exclusive-tests": 2,
+    "jest/no-identical-title": 2
+  }
+}
