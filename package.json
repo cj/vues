@@ -2,10 +2,10 @@
   "name": "vues",
   "version": "0.5.0",
   "description": "The quickest way to run vuejs client side (inspired by next.js and nuxt.js).",
-  "main": "index.js",
+  "main": "./index.js",
   "bin": {
-    "vues": "bin/vue",
-    "vues-dev": "bin/vues-dev"
+    "vues": "./bin/vue",
+    "vues-dev": "./bin/vues-dev"
   },
   "repository": "https://github.com/cj/vues",
   "author": "cj <cjlazell@gmail.com>",
@@ -19,6 +19,9 @@
     "collectCoverageFrom": [
       "lib/*.js"
     ],
+    "modulePathIgnorePatterns": [
+      "vues.config.js"
+    ],
     "coverageThreshold": {
       "global": {
         "branches": 100,
@@ -29,14 +32,18 @@
     }
   },
   "dependencies": {
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-module-resolver": "^2.5.0",
     "babel-preset-vue-app": "^0.4.0",
     "babel-register": "^6.23.0",
     "chalk": "^1.1.3",
     "commander": "^2.9.0",
+    "html-webpack-plugin": "^2.28.0",
     "micro": "^7.0.6",
     "webpack": "2.2.1",
     "webpack-dev-middleware": "1.10.1",
-    "webpack-hot-middleware": "2.17.0"
+    "webpack-hot-middleware": "2.17.0",
+    "webpack-merge": "^3.0.0"
   },
   "devDependencies": {
     "babel-jest": "^18.0.0",
