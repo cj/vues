@@ -11,16 +11,18 @@
   "author": "cj <cjlazell@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "test": "eslint lib && jest --coverage --forceExit",
+    "test": "run-s lint && jest --coverage --forceExit",
+    "lint": "eslint lib bin index.js",
     "test:watch": "jest --watchAll --coverage"
+  },
+  "babel": {
+    "presets": ["vue-app", "es2015"],
+    "plugins": ["transform-runtime", "add-module-exports"]
   },
   "jest": {
     "testEnvironment": "node",
     "collectCoverageFrom": [
       "lib/*.js"
-    ],
-    "modulePathIgnorePatterns": [
-      "vues.config.js"
     ],
     "coverageThreshold": {
       "global": {
@@ -54,6 +56,7 @@
     "eslint-plugin-promise": "^3.4.2",
     "eslint-plugin-standard": "^2.0.1",
     "jest": "^18.1.0",
+    "npm-run-all": "^4.0.1",
     "request-promise": "^4.1.1",
     "test-listen": "^1.0.1"
   }

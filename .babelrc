@@ -1,4 +1,0 @@
-{
-  "presets": ["vue-app", "es2015"],
-  "plugins": ["transform-runtime", "add-module-exports"]
-}
