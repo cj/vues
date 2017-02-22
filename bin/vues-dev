@@ -25,5 +25,4 @@ server.listen(port, host, err => {
     console.error('Vues:', err.stack) // eslint-disable-line no-console
     process.exit(1)
   }
-  console.log(`> Ready! Listening on http://${host}:${port}`) // eslint-disable-line no-console
 })

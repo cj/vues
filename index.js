@@ -1,6 +1,6 @@
 require('babel-register')({
   presets: ['vue-app', 'es2015'],
-  plugins: ['transform-runtime', 'add-module-exports'],
+  plugins: ['add-module-exports'],
   only: /vues\/lib\/.*.js$/
 })
 
