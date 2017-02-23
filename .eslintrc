@@ -27,7 +27,6 @@
     "no-confusing-arrow": 2,
     "arrow-parens": [2, "as-needed"],
     "require-await": 2,
-    "jest/no-exclusive-tests": 2,
     "jest/no-identical-title": 2
   }
 }

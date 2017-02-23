@@ -18,11 +18,12 @@ const config = Vues.config({
 })
 
 const { host, port } = config
-const server         = Vues.server(config)
 
-server.listen(port, host, err => {
-  if (err) {
-    console.error('Vues:', err.stack) // eslint-disable-line no-console
-    process.exit(1)
-  }
+Vues.server(config).then(server => {
+  server.listen(port, host, err => {
+    if (err) {
+      console.error('Vues:', err.stack) // eslint-disable-line no-console
+      process.exit(1)
+    }
+  })
 })
