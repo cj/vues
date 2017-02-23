@@ -7,7 +7,7 @@ require('babel-register')({
 process.env.NODE_ENV = process.env.NODE_ENV || 'development'
 
 const server = require('./lib/server')
-const config = require('./lib/config').default
+const config = require('./lib/config')
 const utils  = require('./lib/utils')
 
 module.exports = { server, config, utils }
