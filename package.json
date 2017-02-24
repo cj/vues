@@ -1,10 +1,10 @@
 {
   "name": "vues",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "The quickest way to run vuejs client side (inspired by next.js, nuxt.js and vbuild).",
   "main": "./index.js",
   "bin": {
-    "vues": "./bin/vue",
+    "vues": "./bin/vues",
     "vues-dev": "./bin/vues-dev",
     "vues-init": "./bin/vues-init"
   },
