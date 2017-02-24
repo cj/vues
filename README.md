@@ -16,8 +16,7 @@
 $ yarn global add vues
 $ vues init project
 $ cd project
-$ yarn
-$ vues
+$ yarn dev
 ```
 Done!!!  You're now running [vuejs].
 

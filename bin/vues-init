@@ -1,0 +1,45 @@
+#!/usr/bin/env node
+
+const cli                = require('commander')
+const Vues               = require('../')
+const chalk              = require('chalk')
+const ora                = require('ora')
+const yarnInstall        = require('yarn-install')
+const { projectDir, fs } = Vues.utils
+const packageJson        = require('../package.json')
+
+cli.parse(process.argv)
+
+const [projectName] = cli.args
+const spinner = ora()
+const spinnerText = text => {
+  spinner.text = `${chalk.green.bold('vues')} ${chalk.cyan(projectName)}/ - ${chalk.bold(text)}`
+}
+let config = Vues.config({ cli, projectName })
+config = Object.assign(config, {
+  spinner,
+  spinnerText,
+  srcDir: projectDir(projectName),
+  vuesVersion: packageJson.version
+})
+
+spinnerText('initializing')
+spinner.start()
+
+if (fs.existsSync(projectDir(projectName))) {
+  spinner.fail(`${chalk.green.bold('vues')} ${chalk.cyan.underline(projectName)}/ dir exists.`)
+  process.exit(1)
+} else {
+  spinnerText('creating files')
+
+  Vues.template.createInitFiles(config).then(() => {
+    spinnerText('files created')
+    spinnerText('running yarn install')
+    yarnInstall({ cwd: config.srcDir })
+
+    spinner.succeed(`${chalk.green.bold('vues')} created ${chalk.cyan.underline(projectName)}/`)
+    console.log(chalk.green('\nTo get started:'))
+    console.log(`\n  cd ${projectName}`)
+    console.log('  yarn dev\n')
+  })
+}

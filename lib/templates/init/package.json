@@ -1,0 +1,11 @@
+{
+  "name": "{{ projectName }}",
+  "version": "0.0.1",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vues"
+  },
+  "dependencies": {
+    "vues": "^{{ vuesVersion }}"
+  }
+}
