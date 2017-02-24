@@ -13,7 +13,8 @@
   "scripts": {
     "test": "run-s lint && jest --coverage --forceExit --no-cache",
     "lint": "eslint lib bin index.js",
-    "test:watch": "jest --watchAll --coverage"
+    "test:watch": "jest --watchAll --coverage",
+    "push": "run-s test && git push"
   },
   "babel": {
     "presets": [
@@ -81,12 +82,15 @@
   },
   "devDependencies": {
     "babel-eslint": "^7.1.1",
+    "coveralls": "^2.11.16",
     "eslint": "^3.15.0",
     "eslint-config-standard": "^6.2.1",
     "eslint-plugin-jest": "^19.0.1",
     "eslint-plugin-promise": "^3.4.2",
     "eslint-plugin-standard": "^2.0.1",
     "jest": "^19.0.0",
+    "jscoverage": "^0.6.0",
+    "nodeunit": "^0.11.0",
     "npm-run-all": "^4.0.1",
     "request-promise": "^4.1.1",
     "test-listen": "^1.0.1"
