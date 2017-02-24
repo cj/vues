@@ -1,21 +1,36 @@
 {
   "name": "vues",
   "version": "0.5.0",
-  "description": "The quickest way to run vuejs client side (inspired by next.js and nuxt.js).",
+  "description": "The quickest way to run vuejs client side (inspired by next.js, nuxt.js and vbuild).",
   "main": "./index.js",
   "bin": {
     "vues": "./bin/vue",
     "vues-dev": "./bin/vues-dev"
   },
-  "repository": "https://github.com/cj/vues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cj/vues"
+  },
   "author": "cj <cjlazell@gmail.com>",
   "license": "MIT",
+  "homepage": "https://github.com/cj/vues#readme",
   "scripts": {
     "test": "run-s lint && jest --coverage --forceExit --no-cache",
     "lint": "eslint lib bin index.js",
     "test:watch": "jest --watchAll --coverage",
     "push": "run-s test && git push"
   },
+  "keywords": [
+    "vues",
+    "vues.js",
+    "vuesjs",
+    "vue",
+    "vue.js",
+    "vuejs",
+    "webpack",
+    "client",
+    "build"
+  ],
   "babel": {
     "presets": [
       "vue-app",
