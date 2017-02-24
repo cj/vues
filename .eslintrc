@@ -17,6 +17,7 @@
     "device": true,
     "componentHandler": true,
     "jest": true,
+    "jasmine": true,
     "beforeAll": true
   },
   "rules": {
