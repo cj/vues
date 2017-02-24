@@ -5,7 +5,8 @@
   "main": "./index.js",
   "bin": {
     "vues": "./bin/vue",
-    "vues-dev": "./bin/vues-dev"
+    "vues-dev": "./bin/vues-dev",
+    "vues-init": "./bin/vues-init"
   },
   "repository": {
     "type": "git",
@@ -93,7 +94,8 @@
     "webpack": "2.2.1",
     "webpack-dev-middleware": "1.10.1",
     "webpack-hot-middleware": "2.17.0",
-    "webpack-merge": "^3.0.0"
+    "webpack-merge": "^3.0.0",
+    "yarn-install": "^0.2.1"
   },
   "devDependencies": {
     "babel-eslint": "^7.1.1",
