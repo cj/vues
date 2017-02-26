@@ -24,7 +24,7 @@
     "no-multi-spaces": 0,
     "key-spacing": 0,
     "consistent-return": 2,
-    "func-style": [2, "declaration", { allowArrowFunctions: true }],
+    "func-style": [2, "declaration", { "allowArrowFunctions": true }],
     "no-confusing-arrow": 2,
     "arrow-parens": [2, "as-needed"],
     "require-await": 2,
