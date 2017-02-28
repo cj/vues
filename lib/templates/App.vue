@@ -10,7 +10,7 @@
 </template>
 
 <script>
-  import vues from 'vues/vues'
+  import vues     from 'vues/vues'
   import EventBus from 'vues/event-bus'
   <% layouts.forEach(layout => { %>
       import {{ layout.name }} from '{{ layout.path }}'
@@ -22,13 +22,23 @@
     <% }) %>
   }
 
+  const vuesTitleTemplate = <% if (titleTemplate) { %> "{{ titleTemplate }}" <% } else { %> null <% } %>
+
   export default {
     props: {
       layout: {}
     },
     beforeCreate () {
-      EventBus.$on('vues:setLayout', (layout) => {
+      EventBus.$on('vues:setLayout', layout => {
         this.layout = vuesLayouts[`${layout}Layout`] || ( vuesLayouts.defaultLayout || vues )
+      })
+
+      EventBus.$on('vues:setTitle', title => {
+        if (vuesTitleTemplate) {
+          document.title = vuesTitleTemplate.replace(/\{\{\s{0,2}viewTitle\s{0,2}\}\}/, title)
+        } else {
+          document.title = title
+        }
       })
     },
     mixins: [{
