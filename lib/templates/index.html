@@ -9,5 +9,8 @@
 </head>
 <body>
   <div id="vues"></div>
+  <% Object.keys(scripts).forEach(key => { %>
+  <script type="text/javascript" {{ Object.keys(scripts[key]).reduce((str, k) => { return str + `${k}="${scripts[key][k]}"` }, '') }}></script>
+  <% }) %>
 </body>
 </html>
