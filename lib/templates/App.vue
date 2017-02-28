@@ -1,17 +1,44 @@
 <template>
   <div id="vues">
-    <router-view></router-view>
+    <div v-if='layout'>
+      <component v-bind:is="layout"></component>
+    </div>
+    <div v-else>
+      <vues />
+    </div>
   </div>
 </template>
 
 <script>
-  export default {
-    <% hooks.forEach(hook => { %>
-      {{ hook.name }} () {
-        {{ hook.callback }}
-        {{ hook.name }}.call(this)
-      },
+  import vues from 'vues/vues'
+  import EventBus from 'vues/event-bus'
+  <% layouts.forEach(layout => { %>
+      import {{ layout.name }} from '{{ layout.path }}'
+  <% }) %>
+
+  const vuesLayouts = {
+    <% layouts.forEach(layout => { %>
+      {{ layout.name }},
     <% }) %>
+  }
+
+  export default {
+    props: {
+      layout: {}
+    },
+    beforeCreate () {
+      EventBus.$on('vues:setLayout', (layout) => {
+        this.layout = vuesLayouts[`${layout}Layout`] || ( vuesLayouts.defaultLayout || vues )
+      })
+    },
+    mixins: [{
+      <% hooks.forEach(hook => { %>
+        {{ hook.name }} () {
+          {{ hook.callback }}
+          {{ hook.name }}.call(this)
+        },
+      <% }) %>
+    }]
   }
 </script>
 
