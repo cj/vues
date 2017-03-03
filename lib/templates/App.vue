@@ -28,19 +28,31 @@
     props: {
       layout: {}
     },
-    beforeCreate () {
-      EventBus.$on('vues:setLayout', layout => {
-        this.layout = vuesLayouts[`${layout}Layout`] || ( vuesLayouts.defaultLayout || vues )
-      })
 
-      EventBus.$on('vues:setTitle', title => {
+    created () {
+      this.updateLayout()
+    },
+
+    methods: {
+      updateLayout () {
+        const { layout, title } = this.$routeOptions[this.$route.name] || {}
+
+        this.layout = vuesLayouts[`${layout}Layout`] || ( vuesLayouts.defaultLayout || vues )
+
         if (vuesTitleTemplate) {
           document.title = vuesTitleTemplate.replace(/\{\{\s{0,2}viewTitle\s{0,2}\}\}/, title)
         } else {
           document.title = title
         }
-      })
+      }
     },
+
+    watch: {
+      $route () {
+        this.updateLayout()
+      }
+    },
+
     mixins: [{
       <% hooks.forEach(hook => { %>
         {{ hook.name }} () {
