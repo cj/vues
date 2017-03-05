@@ -22,6 +22,7 @@
     <% }) %>
   }
 
+  const vuesTitle = "{{ title }}"
   const vuesTitleTemplate = <% if (titleTemplate) { %> "{{ titleTemplate }}" <% } else { %> null <% } %>
 
   export default {
@@ -39,10 +40,10 @@
 
         this.layout = vuesLayouts[`${layout}Layout`] || ( vuesLayouts.defaultLayout || vues )
 
-        if (vuesTitleTemplate) {
+        if (title && vuesTitleTemplate) {
           document.title = vuesTitleTemplate.replace(/\{\{\s{0,2}viewTitle\s{0,2}\}\}/, title)
         } else {
-          document.title = title
+          document.title = vuesTitle
         }
       }
     },
