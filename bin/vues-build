@@ -1,0 +1,53 @@
+#!/usr/bin/env node
+
+process.env.NODE_ENV = process.env.NODE_ENV || 'production'
+
+const cli     = require('commander')
+const Vues    = require('../')
+const ora     = require('ora')
+const spinner = ora('Creating Vues Files')
+const webpack = require('webpack')
+const glob    = require('glob')
+const fs      = require('fs-extra')
+
+cli.parse(process.argv)
+
+const config = Vues.config({ cli })
+
+config.spinner = spinner
+spinner.start()
+
+try {
+  const { createFiles } = Vues.template
+
+  createFiles(config).then(() => {
+    spinner.succeed('Created vues files')
+    spinner.text = 'Clearing previous webpack build files'
+    spinner.start()
+
+    fs.removeSync(`${config.buildDir}/static`)
+
+    glob.sync('**/*(index|client|vendor).*', {
+      cwd: config.buildDir,
+      realpath: true
+    }).forEach(file => {
+      fs.removeSync(file)
+    })
+
+    spinner.succeed('Cleaned build folder')
+    spinner.text = 'Running webpack build'
+    spinner.start()
+    const compiler = webpack(Vues.webpack.default(config))
+    compiler.run((err, stats, watch) => {
+      if (err) {
+        throw new Error(err.stack)
+      }
+
+      Vues.webpack.stats(stats)
+
+      process.exit(1)
+    })
+  })
+} catch (e) {
+  spinner.failed(e)
+}

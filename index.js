@@ -27,5 +27,6 @@ const server   = require('./lib/server')
 const config   = require('./lib/config')
 const template = require('./lib/template')
 const utils    = require('./lib/utils')
+const webpack  = require('./lib/webpack')
 
-module.exports = { server, config, template, utils }
+module.exports = { server, config, template, utils, webpack }
